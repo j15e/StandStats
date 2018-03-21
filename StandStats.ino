@@ -33,7 +33,7 @@ void setup() {
 }
 
 void loop() {
-  int timeSpan = (lastCheckTime - now());
+  int timeSpan = now() - lastCheckTime;
   float standingVoltage = adc1_get_voltage(STANDING_SENSOR) * (2.2 / 4095.0);
   float presenceVoltage = adc1_get_voltage(PRESENCE_SENSOR) * (2.2 / 4095.0);
   float standingRatio = 0.0;
