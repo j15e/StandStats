@@ -45,6 +45,7 @@ void loop() {
     Serial.println("Not present");
     matrix.clear();
     matrix.writeDisplay();
+    delay(500);
     return;
   }  
 
