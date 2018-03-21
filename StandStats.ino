@@ -41,7 +41,7 @@ void loop() {
 
   // Likely not there, don't count anything
   if(presenceVoltage < presenceMinVolt) {
-    Serial.print("Not present");
+    Serial.println("Not present");
     return;
   }  
 
@@ -49,9 +49,9 @@ void loop() {
 
   if (standingVoltage < standingMaxVolt) {
     standingCount = standingCount + timeSpan;
-    Serial.print("Standing");
+    Serial.println("Standing");
   } else {
-    Serial.print("Sitting"); 
+    Serial.println("Sitting"); 
   }
   standingRatio = standingCount / presenceCount;
   
