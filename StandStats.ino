@@ -19,6 +19,7 @@ void setup() {
   Serial.begin(115200);
   Serial.println();
   matrix.begin(0x70);
+  matrix.setBrightness(0.9);
   lastCheckTime = now();
 
   // Set analog width and full-scale voltage to 2.2V
