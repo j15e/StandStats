@@ -53,9 +53,14 @@ void loop() {
   } else {
     Serial.println("Sitting"); 
   }
-  standingRatio = standingCount / presenceCount;
   
-  matrix.print(standingRatio);
+  if(presenceCount > 0) {
+    standingRatio = (float)standingCount / presenceCount;  
+  } else {
+    standingRatio = 0;
+  }
+  
+  matrix.print(standingRatio*100);
   matrix.writeDisplay();
   preferences.putUInt("standingCount", standingCount);
   preferences.putUInt("presenceCount", presenceCount);
