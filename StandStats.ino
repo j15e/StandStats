@@ -42,6 +42,8 @@ void loop() {
   // Likely not there, don't count anything
   if(presenceVoltage < presenceMinVolt) {
     Serial.println("Not present");
+    matrix.clear();
+    matrix.writeDisplay();
     return;
   }  
 
