@@ -8,7 +8,7 @@
 
 # define PRESENCE_SENSOR ADC1_CHANNEL_3
 // A3 (GPI #39)
-# define PRESENCE_MIN_VOLT 1.25
-// > 1.25v for less than 20cm
+# define PRESENCE_MIN_VOLT 1.15
+// > 1.15v for less than 25cm
 // To adjust see voltages chart for short distance sensor
 // http://www.sharp-world.com/products/device/lineup/data/pdf/datasheet/gp2y0a21yk_e.pdf
