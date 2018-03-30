@@ -70,7 +70,7 @@ void loop() {
   matrix.writeDisplay();
   preferences.putUInt("standingCount", standingCount);
   preferences.putUInt("presenceCount", presenceCount);
-  delay(1000);
+  delay(500);
 }
 
 float get_voltage(adc1_channel_t pin, int samples) {
