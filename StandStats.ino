@@ -35,8 +35,8 @@ void setup() {
 
 void loop() {
   int timeSpan = now() - lastCheckTime;
-  float standingVoltage = adc1_get_voltage(STANDING_SENSOR) * (2.2 / 4095.0);
-  float presenceVoltage = adc1_get_voltage(PRESENCE_SENSOR) * (2.2 / 4095.0);
+  float standingVoltage = get_voltage(STANDING_SENSOR, 10) * (2.2 / 4095.0);
+  float presenceVoltage = get_voltage(PRESENCE_SENSOR, 10) * (2.2 / 4095.0);
   float standingRatio = 0.0;
   lastCheckTime = now();
 
@@ -71,4 +71,14 @@ void loop() {
   preferences.putUInt("standingCount", standingCount);
   preferences.putUInt("presenceCount", presenceCount);
   delay(1000);
+}
+
+float get_voltage(adc1_channel_t pin, int samples) {
+  float total = 0;
+
+  for(int i = 0; i < samples; i++){
+    total += adc1_get_voltage(pin);
+  }
+
+  return total / samples;
 }
