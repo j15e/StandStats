@@ -1,8 +1,8 @@
 # define DISPLAY_ADDR 0x70
 # define STANDING_SENSOR ADC1_CHANNEL_6
 // A2 (GPI #34)
-# define STANDING_MAX_VOLT 0.70
-// < 0.70v for more than 90cm
+# define STANDING_MAX_VOLT 0.85
+// < 0.85v for more than 70cm
 // To adjust see voltage chart for medium dinstance sensor
 // https://cdn-shop.adafruit.com/product-files/1031/GP2Y0A02YK-DATA-SHEET.PDF
 
