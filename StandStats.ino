@@ -41,6 +41,7 @@ void loop() {
   lastCheckTime = now();
 
   // Likely not there, don't count anything
+  Serial.println(presenceVoltage);
   if(presenceVoltage < presenceMinVolt) {
     Serial.println("Not present");
     matrix.clear();
@@ -51,6 +52,7 @@ void loop() {
 
   presenceCount = presenceCount + timeSpan;
 
+  Serial.println(standingVoltage);
   if (standingVoltage < standingMaxVolt) {
     standingCount = standingCount + timeSpan;
     Serial.println("Standing");
