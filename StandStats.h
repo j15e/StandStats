@@ -12,3 +12,6 @@
 // > 1.15v for less than 25cm
 // To adjust see voltages chart for short distance sensor
 // http://www.sharp-world.com/products/device/lineup/data/pdf/datasheet/gp2y0a21yk_e.pdf
+
+#define WIFI_SSID "change-this"
+#define WIFI_PASSWORD "change-this"

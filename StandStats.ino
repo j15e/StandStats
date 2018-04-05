@@ -5,10 +5,13 @@
 #include <TimeLib.h>
 #include <Preferences.h>
 #include <driver/adc.h>
+#include "WiFi.h"
 
 Adafruit_7segment matrix = Adafruit_7segment();
 Preferences preferences;
 
+const char* ssid     = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
 float standingMaxVolt = STANDING_MAX_VOLT;
 float presenceMinVolt = PRESENCE_MIN_VOLT;
 int standingCount = 0;
@@ -18,6 +21,8 @@ time_t lastCheckTime = 0;
 void setup() {
   Serial.begin(115200);
   Serial.println();
+  setupWifi();
+  setupTime();
   matrix.begin(0x70);
   matrix.setBrightness(0.9);
   lastCheckTime = now();
@@ -39,6 +44,7 @@ void loop() {
   float presenceVoltage = get_voltage(PRESENCE_SENSOR, 10) * (2.2 / 4095.0);
   float standingRatio = 0.0;
   lastCheckTime = now();
+  printLocalTime();
 
   // Likely not there, don't count anything
   Serial.println(presenceVoltage);
@@ -81,4 +87,38 @@ float get_voltage(adc1_channel_t pin, int samples) {
   }
 
   return total / samples;
+}
+
+void setupWifi() {
+  // We start by connecting to a WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void setupTime() {
+  long timezone = -5; 
+  byte daysavetime = 1;
+  configTime(3600 * timezone, daysavetime * 3600, "time.nist.gov", "0.pool.ntp.org", "1.pool.ntp.org");
+}
+
+void printLocalTime() {
+  struct tm timeinfo;
+  if(!getLocalTime(&timeinfo)){
+    Serial.println("Failed to obtain time");
+    return;
+  }
+  Serial.println(&timeinfo, "%A, %B %d %Y %H:%M:%S");
 }
